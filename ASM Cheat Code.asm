@@ -50,9 +50,10 @@ main proc
       first_value-> al/ax
       second_value->any registers
         
-      8 bit division(al/bl)
+      8 bit division(ax/bl) ;bl is the register you want to perform division with: div bl. You can use cl instead of bl: mov cl,2   div cl
+      dividend-> ax  divisor->bl
       quotient-> al  remainder->ah
-      result-> ax 
+       
       
       Example:
       mov ah, 0
@@ -93,7 +94,12 @@ main proc
       jl al<ah
       jle al<=ah
       jg al>ah
-      jz   ;checks if the value of the zero flag is 1, then it will perform a jump
+      jz   ;checks if the value of the zero flag is 1, then it will perform a jump   
+      
+      The ones that will be most used are:
+      cmp
+      je labe1
+      jne label 2
       
       
       
