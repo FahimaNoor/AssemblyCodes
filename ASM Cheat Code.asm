@@ -52,6 +52,8 @@ main proc
         
       8 bit division(ax/bl) ;bl is the register you want to perform division with: div bl. You can use cl instead of bl: mov cl,2   div cl
       dividend-> ax  divisor->bl
+      
+      ;after operation
       quotient-> al  remainder->ah
        
       
