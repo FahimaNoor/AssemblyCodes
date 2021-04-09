@@ -18,7 +18,8 @@ main proc
     uArr2 db 5 dup(?) ; ; initialized array uArr2 of size 5 with 5 ? as elements
     uArr3 db 2 dup(1,2) ;1,2 this will be carried out 2 times     
     str db 'abcd'; create string str=abcd
-    constant k equ 5; k=5  check video?? 
+    constant;
+    k equ 5; k=5  check video?? 
     
     ;how to find Array length?
     
