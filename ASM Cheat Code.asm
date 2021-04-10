@@ -18,25 +18,29 @@ main proc
     uArr2 db 5 dup(?) ; ; initialized array uArr2 of size 5 with 5 ? as elements
     uArr3 db 2 dup(1,2) ;1,2 this will be carried out 2 times     
     str db 'abcd'; create string str=abcd
-    constant;
+    
+    ;constant
     k equ 5; k=5  check video?? 
     
-    ;how to find Array length?
-    
+    ;how to find Array length?  
     len_Arr db 1,2,3,4,5
     len equ $-len_Arr ;this has to be written immediately after
                       ; the array declaration
+    ;increment decrement registers
     inc al  ; al++
     dec al  ; al--
     
     lea si, arr; first memory address of arr is going to be stored in si
                ; si is pointing to the first address of si
     inc si
-    [si]
-    si  ;gives you value of particular     
+    [si]  ; gives you value of stored inside the address si is pointing to
+    si    ;gives you address si is pointing to    
     
     
-    ;for multiplication
+;for multiplication 
+
+  mul bx ; since bx stores 16 bits, it assumes that 16 bit multiplication will take place
+  mul bl;  since bl stores 8 bits, it assumes that 16 bit multiplication will take place
     first_value->al/ax
     second_value->any register
     result->ax ; if the multiplication is of 8 bits  
@@ -47,7 +51,7 @@ main proc
       result(lower_half)->ax  
       result(higher_half)->dx
       
-      Division(al/bl) 
+;Division(al/bl) 
       first_value-> al/ax
       second_value->any registers
         
