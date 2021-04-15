@@ -7,8 +7,9 @@ msg db 15 dup(?) ;you can change the msg length that you want to use
 main proc
     mov ax,@data
     mov ds,ax
-    mov si,offset msg ; loads the adress of the array msg
-
+   ; mov si,offset msg ; loads the adress of the array msg
+    lea si,msg
+    
 input: 
     mov ah,1
     int 21h      ;the user input hex converted data will be stored in al reigster. user gives 'd' and after the execution of this line the al register will have the value 64h which is the hex value of 'd'
