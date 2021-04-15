@@ -1,1 +1,10 @@
 Interrupt: http://bbc.nvg.org/doc/Master%20512%20Technical%20Guide/m512techb_int21.htm
+
+ASM Problems: https://www.codepoc.io/blog/assembly-language/2681/program-to-display-a-character?utm_source=20
+
+
+
+
+
+
+.
