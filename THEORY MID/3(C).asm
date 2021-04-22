@@ -1,0 +1,71 @@
+org 100h
+
+NOP
+MOV AL,  11011010B 
+MOV AH,AL ;ANOTHER COPY IS TAKEN WHICH WILL BE REVERESD TO COMPARE WITH AL 
+MOV CX,8 
+REVERSE:
+    SHL AL, 1 ;get a bit· into CF 
+    RCR BL,1 ;rotate it into BL 
+LOOP REVERSE ;loop until done
+
+CHECK_PALINDROME:   
+    CMP AH, BL
+JE PALINDROME
+JNE NOT_PALINDROME 
+
+PALINDROME:
+    CALL SEPARATING_NIBBLES
+    CALL SUM_OF_NIBBLE
+    MOV CH,CL  ;SUM OF HIGHER NIBBLE
+    MOV DH,DL  ;MOVE THE LOWER NIBBLE TO DH
+    CALL SUM_OF_NIBBLE 
+    CMP CH,CL  ;COMPARING THE SUM OF LOWER NIBBLE WITH THE HIGHER NIBBLE
+JE  BOTH
+JNE ONLY_ONE
+
+NOT_PALINDROME:
+    CALL SEPARATING_NIBBLES
+    CALL SUM_OF_NIBBLE
+    MOV CH,CL  ;SUM OF HIGHER NIBBLE
+    MOV DH,DL  ;MOVE THE LOWER NIBBLE TO DH
+    CALL SUM_OF_NIBBLE  
+    CMP CH,CL
+JE  ONLY_ONE
+JNE NONE       
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+PROC SEPARATING_NIBBLES
+    MOV DH,00001111B  
+    AND DH,AH 
+    MOV DL,DH ;LOWER NIBBLE  
+    SHR AH,4   
+    MOV DH,AH  ;HIGHER NIBBLE
+ENDP SEPARATING_NIBBLES  
+RET
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+PROC SUM_OF_NIBBLE 
+    MOV CL,0 ;SUM 
+    SUM:
+        CMP DH,0 
+        JE EXIT
+        MOV BL, 0001B
+        AND BL,DH 
+        ADD CL,BL
+        SHR DH,1
+    JMP SUM
+    EXIT: 
+ENDP SUM
+RET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+BOTH:
+    MOV DL,02H
+    JMP BREAK
+ONLY_ONE:
+    MOV DL,01H
+    JMP BREAK
+NONE:
+    MOV DL,00H
+BREAK:
+    HLT ;END
+ret

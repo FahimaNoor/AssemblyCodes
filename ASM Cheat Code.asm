@@ -106,7 +106,16 @@ main proc
       The ones that will be most used are:
       cmp
       je labe1
-      jne label 2
+      jne label 2       
+      
+      
+      
+      
+      INTERUPTS:
+      mov ah, 02h  
+      mov dl, 'THE THING THAT YOU WANT TO DISPLAY' ;mov dl, STRING ; WHERE STRING IS A STRING VARIABLE
+      int 21h
+      
       
       
       
