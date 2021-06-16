@@ -5,7 +5,7 @@ include 'emu8086.inc'
 array db 8,9,0,3,2,5,10,4,5,3
 len equ $-array  
 
-maximum db ?  ;uninitialized array 
+maximum dw ?  ;uninitialized array 
      
 .code 
 main proc   
@@ -20,7 +20,7 @@ main proc
  
      comparison:  
          cmp ch,len  
-         je break:    
+         je break    
             
          mov bl,[si]   
          cmp  maximum, bl
@@ -39,7 +39,7 @@ main proc
          mov al, maximum
          call   print_num      ; print number in AX.
 
-    
+          
 define_print_num
 define_print_num_uns  ; required for print_num.   
 endp main
